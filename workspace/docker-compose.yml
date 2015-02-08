@@ -1,0 +1,29 @@
+web:
+  build: .
+  command: 'bash -c ''bundle exec lita start'''
+  working_dir: /app/user
+  environment:
+    AWS_ACCESS_KEY_ID:
+    AWS_SECRET_ACCESS_KEY:
+    PORT: 8080
+    REDIS_URL: 'redis://herokuRedis:6379'
+    SLACK_TOKEN:
+  ports:
+    - '8080:8080'
+  links:
+    - herokuRedis
+shell:
+  build: .
+  command: bash
+  working_dir: /app/user
+  environment:
+    PORT: 8080
+    REDIS_URL: 'redis://herokuRedis:6379'
+  ports:
+    - '8080:8080'
+  links:
+    - herokuRedis
+  volumes:
+    - '.:/app/user'
+herokuRedis:
+  image: redis

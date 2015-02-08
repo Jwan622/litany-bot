@@ -1,0 +1,8 @@
+{
+  "name": "Litany",
+  "description": "A music sharing/aggregator bot for BlueApron",
+  "image": "heroku/ruby",
+  "addons": [
+    "heroku-redis"
+  ]
+}

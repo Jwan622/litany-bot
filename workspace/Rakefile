@@ -1,0 +1,6 @@
+namespace :assets do
+  desc 'A dummy rake task for making the heroku/ruby docker image work'
+  task :precompile do
+    puts 'Dummy asset precompilation!'
+  end
+end
