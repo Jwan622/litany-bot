@@ -10,7 +10,7 @@ module Lita
 
       http.get "/tracks" do |request, response|
         track_array = redis.smembers("tracks").map do |track|
-          track
+          JSON.parse(track)
         end
         response.body << { tracks: track_array }.to_json
       end
@@ -68,6 +68,7 @@ module Lita
         track_album_name = track.album.name
         track_duration_time = Time.at(track.duration_ms / 1000).utc.strftime("%M:%S")
         images = track.album.images
+        track_id = track.id
 
         {
           user: user,
@@ -77,8 +78,9 @@ module Lita
           track_release_date: track_release_date,
           track_album_name: track_album_name,
           track_duration_time: track_duration_time,
-          images: images
-        }
+          images: images,
+          track_id: track_id
+        }.to_json
 
       end
     end
