@@ -1,11 +1,15 @@
-http.get "/musics" do |request, response|
-  response.body << # database connection and get all of it
-end
+module Lita
+  class Router < Handler
+    http.get "/musics" do |request, response|
+      response.body << db_connection.hgetall(redis_track_key)
+    end
 
-http.get "/music/:user" do |request, response|
-  response.body << # database connection and get all music by user
-end
+    http.get "/music/:user" do |request, response|
+      response.body << db_connection.hgetall(user)
+    end
 
-http.get "/music/:genre" do |request, response|
-  response.body << # database connection and get all music by genre
+    http.get "/music/:genre" do |request, response|
+      response.body << db_connection.hgetall(genre)
+    end
+  end
 end

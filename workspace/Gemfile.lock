@@ -92,6 +92,7 @@ DEPENDENCIES
   aws-sdk
   lita
   lita-slack
+  redis (~> 3.2)
   rspotify
 
 BUNDLED WITH

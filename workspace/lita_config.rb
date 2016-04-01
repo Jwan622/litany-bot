@@ -9,10 +9,14 @@ Lita.configure do |config|
 
   config.robot.adapter = :shell
   config.adapters.slack.token = "xoxb-31097453729-k8Xil8d4cGcwL0ulxdJMhWjd"
-
-  config.redis[:host] = "redis"
 end
 
+# load the handlers first
 Dir['lib/lita/handlers/*.rb'].each do |handler|
   require "lita/handlers/#{File.basename(handler, '.rb')}"
+end
+
+# then the routes file for lita's built-in web server
+Dir['lib/lita/*.rb'].each do |file|
+  require "lita/#{File.basename(file, '.rb')}"
 end
