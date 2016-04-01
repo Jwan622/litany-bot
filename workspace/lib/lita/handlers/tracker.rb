@@ -37,7 +37,7 @@ module Lita
           redis.sadd("tracks", single_track_json(track, response.user.name))
 
           # store individual track
-          redis.mapped_hmset(track.id, single_track_json(track, response.user.name))
+          # redis.mapped_hmset(track.id, single_track_json(track, response.user.name))
 
           # store individual track for user, set add
           redis_user_key = response.user.name + track.id
